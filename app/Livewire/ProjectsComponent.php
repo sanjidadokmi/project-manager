@@ -17,6 +17,9 @@ class ProjectsComponent extends Component
     #[Validate('required')] 
     public $project_description;
 
+    #[Validate('required')]
+    public $project_status;
+
 
     public function create()
     {
@@ -24,11 +27,13 @@ class ProjectsComponent extends Component
         
             Project::create([
                 'project_name' => $this->project_name, 
-                'project_description' => $this->project_description
+                'project_description' => $this->project_description,
+                'status' => $this->project_status
             ]);
     
             $this->project_name = '';
             $this->project_description = '';
+            $this->project_status;
     
             session()->flash('message', 'Project Created successfully!'); 
             return $this->redirect('/projects');

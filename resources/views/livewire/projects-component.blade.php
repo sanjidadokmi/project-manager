@@ -44,7 +44,7 @@
                             <ul class="space-y-2">
                                 @foreach ($statuses as $key => $label)
                                     <li class="flex items-center">
-                                        <input id="{{ $key }}" name="status" type="radio"
+                                        <input id="{{ $key }}" wire:model="project_status" name="status" type="radio"
                                             value="{{ $key }}"
                                             class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300">
                                         <label for="{{ $key }}"
@@ -73,9 +73,9 @@
                     </thead>
                     <tbody>
                         @if ($projects->count())
-                            @foreach ($projects as $project)
+                            @foreach ($projects as $index => $project)
                                 <tr>
-                                    <td class="text-center p-3 text-sm text-gray-700 ">{{ $projects->count() }}</td>
+                                    <td class="text-center p-3 text-sm text-gray-700 ">{{ $index + 1 }}</td>
                                     <td class="text-center p-3 text-sm text-gray-700 ">{{ $project->project_name }}
                                     </td>
                                     <td class="text-center p-3 text-sm text-gray-700 ">
@@ -106,10 +106,12 @@
                             </tr>
                         @endif
                     </tbody>
+
+                    {{-- paginate links --}}
+                    {{ $projects->links() }}
                 </table>
 
-                {{-- paginate links --}}
-                {{ $projects->links() }}
+                
             </div>
         </div>
     </div>
