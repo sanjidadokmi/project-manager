@@ -23,7 +23,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{-- form --}}
-                    <form wire:submit="create" class="space-y-4 mb-8">
+                    <form wire:submit="create"  class="space-y-4 mb-8">
                         <div>
                             <label for="project_name" class="block text-sm font-medium text-gray-700">Project
                                 Name</label>

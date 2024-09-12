@@ -13,24 +13,31 @@ class ProjectsComponent extends Component
     public $project_name;
     public $project_description;
 
+    
+    public function rules()
+    {
+        return [
+            'project_name' => 'required|string|max:255', 
+            'project_description' => 'required|max:655',
+        ];
+    }
+
     public function create()
     {
-        $this->validate([
-            'project_name' => 'required|string|max:255',
-            'project_description' => 'required|max:655',
-        ]);
-
-        Project::create([
-            'project_name' => $this->project_name, 
-            'project_description' => $this->project_description
-        ]);
-
-        $this->project_name = '';
-        $this->project_description = '';
-
-        session()->flash('message', 'Project Created successfully!'); 
-        return $this->redirect('/projects');
-
+        
+            $this->validate();
+            Project::create([
+                'project_name' => $this->project_name, 
+                'project_description' => $this->project_description
+            ]);
+    
+            $this->project_name = '';
+            $this->project_description = '';
+    
+            session()->flash('message', 'Project Created successfully!'); 
+            return $this->redirect('/projects');
+           
+        
     }
 
     public function render()
