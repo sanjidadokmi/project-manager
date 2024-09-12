@@ -7,21 +7,42 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            @if (session()->has('message'))
+                <div class="flex items-center p-4 mb-4 text-green-800 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+                    role="alert">
+                    <svg class="w-5 h-5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm-1-12a1 1 0 0 1 2 0v4a1 1 0 0 1-2 0V6zm0 6a1 1 0 1 1 2 0 1 1 0 0 1-2 0z" />
+                    </svg>
+                    <div>
+                        <span class="font-medium">Success!</span> {{ session('message') }}
+                    </div>
+                </div>
+            @endif
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{-- form --}}
                     <form wire:submit="create" class="space-y-4 mb-8">
                         <div>
-                            <label for="project_name" class="block text-sm font-medium text-gray-700">Project Name</label>
-                            <input id="project_name" type="text" wire:model="project_name" name="project_name" 
+                            <label for="project_name" class="block text-sm font-medium text-gray-700">Project
+                                Name</label>
+                            <input id="project_name" type="text" wire:model="project_name" name="project_name"
                                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @error('project_name')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
                         </div>
 
-                        
+
                         <div>
-                            <label for="project_description" class="block text-sm font-medium text-gray-700">Description</label>
-                            <textarea id="project_description" wire:model="project_description" name="project_description" rows="4" 
+                            <label for="project_description"
+                                class="block text-sm font-medium text-gray-700">Description</label>
+                            <textarea id="project_description" wire:model="project_description" name="project_description" rows="4"
                                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                            @error('project_description')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div>
@@ -30,12 +51,15 @@
                                 <ul class="space-y-2">
                                     @foreach ($statuses as $key => $label)
                                         <li class="flex items-center">
-                                            <input id="{{ $key }}" name="status" type="radio" value="{{ $key }}"   class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300">
-                                            <label for="{{ $key }}" class="ml-2 text-sm font-medium text-gray-700">{{ $label }}</label>
+                                            <input id="{{ $key }}" name="status" type="radio"
+                                                value="{{ $key }}"
+                                                class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300">
+                                            <label for="{{ $key }}"
+                                                class="ml-2 text-sm font-medium text-gray-700">{{ $label }}</label>
                                         </li>
                                     @endforeach
                                 </ul>
-                              </fieldset>
+                            </fieldset>
                         </div>
 
 

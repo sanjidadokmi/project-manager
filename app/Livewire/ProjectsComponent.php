@@ -28,7 +28,7 @@ class ProjectsComponent extends Component
         $this->project_name = '';
         $this->project_description = '';
 
-        session()->flash('message', 'Form submitted successfully!'); 
+        session()->flash('message', 'Project Created successfully!'); 
         return $this->redirect('/projects');
 
     }
