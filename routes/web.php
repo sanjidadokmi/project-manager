@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProjectsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +19,11 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::get('projects', [ProjectsController::class, 'index'])
-    ->middleware(['auth', 'verified'])
+
+
+
+Route::view('projects', 'projects')
+    ->middleware(['auth'])
     ->name('projects');
 
 Route::view('profile', 'profile')

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Livewire;
+use Livewire\Attributes\Validate;
 
 use Livewire\Component;
 use App\Models\Project;
@@ -10,22 +11,17 @@ class ProjectsComponent extends Component
 {
     use WithPagination;
 
+    #[Validate('required')] 
     public $project_name;
+
+    #[Validate('required')] 
     public $project_description;
 
-    
-    public function rules()
-    {
-        return [
-            'project_name' => 'required|string|max:255', 
-            'project_description' => 'required|max:655',
-        ];
-    }
 
     public function create()
     {
+        $this->validate();
         
-            $this->validate();
             Project::create([
                 'project_name' => $this->project_name, 
                 'project_description' => $this->project_description
