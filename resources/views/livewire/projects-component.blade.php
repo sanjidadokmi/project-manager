@@ -23,7 +23,7 @@
                         <input id="project_name" type="text" wire:model="project_name" name="project_name"
                             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         @error('project_name')
-                            <span class="error">{{ $message }}</span>
+                            <span class="text-red-700 ">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -34,7 +34,7 @@
                         <textarea id="project_description" wire:model="project_description" name="project_description" rows="4"
                             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
                         @error('project_description')
-                            <span class="error">{{ $message }}</span>
+                            <span class="text-red-700">{{ $message }}</span>
                         @enderror
                     </div>
 
