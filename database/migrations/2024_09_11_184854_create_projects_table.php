@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->string('Project Name');
-            $table->text('Project Description');
-            $table->enum('Status', ['ToDo', 'Processing', 'On Hold', 'Done'])->default('ToDo');
+            $table->string('project_name');
+            $table->text('project_description');
+            $table->enum('status', ['ToDo', 'Processing', 'On Hold', 'Done'])->default('ToDo');
             $table->timestamps();
         });
     }
